@@ -1,0 +1,4 @@
+bin
+printers.ini
+printer-scanner*
+src/!main**
