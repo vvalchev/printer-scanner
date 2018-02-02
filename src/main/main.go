@@ -11,14 +11,21 @@ import (
 )
 
 var doScan = flag.Bool("scan", false, "Scan the complete local network to find Printer Devices.")
-var url = flag.String("post", "", "Optional URL. When specified the printer data is serialized to JSON and posted to that URL.")
 var outFile = flag.String("o", "printers.ini", "The output file, where the scan results to be written.")
+var url = flag.String("post", "", "Optional URL. When specified the printer data is serialized to JSON and posted to that URL.")
+var clientId = flag.String("clientId", "", "Option clientId, that is supplied when posting printer data to URL.")
 
-func postPrinterData(ipVars []JsonVars) {
+type PostData struct {
+    ClientId string
+    Printers []JsonVars
+}
+
+
+func postPrinterData(d PostData) {
     log.Printf("Publishing printer data to URL: %s\n", *url)
 
     // serialize to JSON
-    jsonString, _ := json.Marshal(ipVars)
+    jsonString, _ := json.Marshal(d)
 
     // POST
     resp, err := http.Post(*url, "application/json", bytes.NewBuffer(jsonString))
@@ -61,7 +68,10 @@ func main() {
     }
 
     if ipList != nil {
-        ipVars := []JsonVars{}
+        json := PostData{
+            ClientId: *clientId,
+            Printers: []JsonVars{},
+        }
 
         log.Printf("Scanning started ...\n")
         // asynchronously scan every IP address
@@ -73,7 +83,7 @@ func main() {
                 vars,_ := SnmpScan(xip)
                 if vars != nil {
                     log.Printf("%16v -> OK\n", xip)
-                    ipVars = append(ipVars, Snmp2Json(xip, vars))
+                    json.Printers = append(json.Printers, Snmp2Json(xip, vars))
                     SnmpPrint(out, xip, vars)
                 } else {
                     log.Printf("%16v -> FAIL\n", xip)
@@ -82,7 +92,8 @@ func main() {
         }
         wg.Wait()
         if (*url != "") {
-            postPrinterData(ipVars)
+            // ipVars.ClientId = *clientId
+            postPrinterData(json)
         }
         log.Printf("Scanning complete! Results are printed to %v\n", *outFile)
     } else {
