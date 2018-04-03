@@ -23,12 +23,14 @@ Usage of ./printer-scanner:
   -post string
     	Optional URL. When specified the printer data is serialized to JSON and posted to that URL.
   -scan
-    	Scan the complete local network to find Printer Devices.```
+    	Scan the complete local network to find Printer Devices.
+```
 
 If you omit the '-scan' you have to provide a list of IP/Network Addresses to scan.
 
 In case you specify a POST URL, the format of the data that is send that URL is JSON:
-```
+
+```json
 {
     "ClientId": "my-very-secret-client-id",
     "Printers": [
