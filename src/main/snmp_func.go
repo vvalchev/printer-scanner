@@ -65,6 +65,7 @@ var MINOLTA_OID = []string{
     // mltSysDuplexCount 1.3.6.1.4.1.2590.1.1.1.5.7.2.1.3
     // mltSysTotalCount 1.3.6.1.4.1.2590.1.1.1.5.7.2.1.1
     "1.3.6.1.4.1.2590.1.1.1.5.7.2", // Minolta mltSysSystemCounter
+    "1.3.6.1.4.1.18334.1.1.1.5.7.2.2.1.5", // Minolta MIB, kmSysPrintFunctionCounterTable
 }
 // http://www.oidview.com/mibs/11/IJXXXX-MIB.html
 var HP_IJXXXX_OID = []string{
@@ -114,6 +115,12 @@ var OID2PROP = map[string]string{
     "1.3.6.1.4.1.2435.2.3.9.4.2.1.5.5.1":  "brInfoSerialNumber",
     "1.3.6.1.4.1.2435.2.3.9.4.2.1.5.5.10": "brInfoCounter",
     "1.3.6.1.4.1.2435.2.3.9.4.2.1.5.5.17": "brInfoDeviceRomVersion",
+
+    // Minolta
+    "1.3.6.1.4.1.18334.1.1.1.5.7.2.2.1.5.1.1": "copy-counter-black",
+    "1.3.6.1.4.1.18334.1.1.1.5.7.2.2.1.5.2.1": "copy-counter-color",
+    "1.3.6.1.4.1.18334.1.1.1.5.7.2.2.1.5.1.2": "print-counter-black",
+    "1.3.6.1.4.1.18334.1.1.1.5.7.2.2.1.5.2.2": "print-counter-color",
 }
 
 
