@@ -1,0 +1,4 @@
+github.com/geoffgarside/ber v0.0.0-20190912223231-00c19d63973f h1:Yqplfw7Hcmiy3/Rv3hAdB565u2VSMpfPEcWUHU1raww=
+github.com/geoffgarside/ber v0.0.0-20190912223231-00c19d63973f/go.mod h1:jVPKeCbj6MvQZhwLYsGwaGI52oUorHoHKNecGT85ZCc=
+github.com/k-sone/snmpgo v3.2.0+incompatible h1:2NogYilKYSia0f+seO9P7aRa6MKG6RcnNc1L74L8WOw=
+github.com/k-sone/snmpgo v3.2.0+incompatible/go.mod h1:9MC6LeG1sGPgrwnmu/V/ncg9P2M5zS5IvE+c4KZj25g=
